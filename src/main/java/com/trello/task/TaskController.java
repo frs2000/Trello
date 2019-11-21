@@ -14,7 +14,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @PutMapping("/create")
+    @PostMapping("/create")
     public int create(@Valid @RequestBody Task task) {
         return taskService.create(task);
     }
@@ -29,7 +29,7 @@ public class TaskController {
         return taskService.getByID(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void update(@Valid @RequestBody Task task) {
         taskService.update(task);
     }
