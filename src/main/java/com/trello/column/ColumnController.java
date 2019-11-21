@@ -15,7 +15,7 @@ public class ColumnController {
         this.columnService = columnService;
     }
 
-    @PutMapping("/create")
+    @PostMapping("/create")
     public int create(@Valid @RequestBody Column column) {
         return columnService.create(column);
     }
@@ -25,7 +25,7 @@ public class ColumnController {
         columnService.delete(columnID);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void update(@Valid @RequestBody Column column) {
         columnService.update(column);
     }
