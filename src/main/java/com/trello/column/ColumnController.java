@@ -1,6 +1,8 @@
 package com.trello.column;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,22 +18,24 @@ public class ColumnController {
     }
 
     @PostMapping("/create")
-    public int create(@Valid @RequestBody Column column) {
-        return columnService.create(column);
+    public ResponseEntity create(@Valid @RequestBody Column column) {
+        return new ResponseEntity<>(columnService.create(column), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestParam int columnID) {
+    public ResponseEntity delete(@RequestParam int columnID) {
         columnService.delete(columnID);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public void update(@Valid @RequestBody Column column) {
+    public ResponseEntity update(@Valid @RequestBody Column column) {
         columnService.update(column);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/getByID")
-    public Column getByID(@RequestParam int id) {
-        return columnService.getByID(id);
+    public ResponseEntity<Column> getByID(@RequestParam int id) {
+        return ResponseEntity.ok(columnService.getByID(id));
     }
 }
